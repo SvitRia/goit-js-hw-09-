@@ -1,5 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Block } from 'notiflix/build/notiflix-block-aio';
+import "notiflix/dist/notiflix-3.2.6.min.css";
 
 const elements ={
     startTimer: document.querySelector('#datetime-picker'),
@@ -32,7 +34,7 @@ function handlerStart() {
       elements.seconds.textContent = addLeadingZero(seconds);
     }, 1000);
   }
-  
+ 
   const options = {
     enableTime: true,
     time_24hr: true,
@@ -40,9 +42,9 @@ function handlerStart() {
     minuteIncrement: 1,
     onClose(selectedDates) {
       if (selectedDates[0] <= Date.now()) {
-       
-        alert("Please choose a date in the future");
-        elements.btnStart.setAttribute('disabled', true);
+       Block.standard('[data-start]', 'Please choose a date in the future');
+        //alert("Please choose a date in the future");
+        //elements.btnStart.setAttribute('disabled', true);
       } else {
         chosenDate = selectedDates[0];
         elements.btnStart.removeAttribute('disabled');
@@ -51,7 +53,7 @@ function handlerStart() {
     },
   };
 
-  
+  flatpickr('#datetime-picker', options);
 
   function convertMs(ms) {
     const second = 1000;
@@ -68,28 +70,5 @@ function handlerStart() {
     return value.toString().padStart(2, '0');
   }
 
-  
 
-  function convertMs(ms) {
-    // Number of milliseconds per unit of time
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-  
-    const days = Math.floor(ms / day);
-   
-    const hours = Math.floor((ms % day) / hour);
-   
-    const minutes = Math.floor(((ms % day) % hour) / minute);
-  
-    const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  
-    return { days, hours, minutes, seconds };
-  }
 
-flatpickr('#datetime-picker', options);
-
-function addLeadingZero(value) {
-  return value.toString().padStart(2, '0');
-}

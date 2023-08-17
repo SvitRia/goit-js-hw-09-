@@ -1,0 +1,21 @@
+.input-data {
+    margin: 10px 100px;
+}
+.timer {
+    margin: 100px;
+    display: flex;
+    gap: 30px;
+}
+.field {
+    padding: 5px 15px;
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+.value {
+    font-size: larger;
+    color: red;
+}
+.btn-start {
+    color: blue;
+    font-size: 24px;
+}

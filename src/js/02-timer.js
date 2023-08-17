@@ -29,8 +29,8 @@ const options = {
     },
   };
 
-  flatpickr("#datetime-picker", {options});
-  console.dir(flatpickr);
+  const fp = flatpickr("#datetime-picker", {options});
+  console.log(fp);
   console.dir(options);
 
   

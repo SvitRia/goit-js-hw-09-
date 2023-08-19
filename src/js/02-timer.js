@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Block } from 'notiflix/build/notiflix-block-aio';
-import "notiflix/dist/notiflix-3.2.6.min.css";
+import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const elements ={
     startTimer: document.querySelector('#datetime-picker'),

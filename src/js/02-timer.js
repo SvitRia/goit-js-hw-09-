@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-import { Block } from 'notiflix/build/notiflix-block-aio';
+import Notiflix from 'notiflix'
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 
 const elements ={
@@ -17,23 +17,22 @@ let chosenDate = null;
 elements.btnStart.addEventListener('click', handlerStart)
 function handlerStart() {
     clearInterval(timerId);
-    timerId = setInterval(() => {
-      elements.btnStart.setAttribute('disabled', true);
-      elements.startTimer.setAttribute('disabled', true);
-      const currentTime = Date.now();
-      const deltaTime = chosenDate - currentTime;
-      if (deltaTime <= 0) {
-        clearInterval(timerId);
-        elements.btnStart.removeAttribute('disabled');
-        elements.startTimer.removeAttribute('disabled');
-      }
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
-      elements.day.textContent = addLeadingZero(days);
-      elements.hours.textContent = addLeadingZero(hours);
-      elements.minutes.textContent = addLeadingZero(minutes);
-      elements.seconds.textContent = addLeadingZero(seconds);
-    }, 1000);
-  }
+       timerId = setInterval(() => {
+          elements.btnStart.setAttribute('disabled', true);
+          elements.startTimer.setAttribute('disabled', true);
+          const currentTime = Date.now();
+          const deltaTime = chosenDate - currentTime;
+            if (deltaTime <= 0) {
+                elements.btnStart.removeAttribute('disabled');
+                elements.startTimer.removeAttribute('disabled');
+            } else { 
+              const { days, hours, minutes, seconds } = convertMs(deltaTime);
+              elements.day.textContent = addLeadingZero(days);
+              elements.hours.textContent = addLeadingZero(hours);
+              elements.minutes.textContent = addLeadingZero(minutes);
+              elements.seconds.textContent = addLeadingZero(seconds);
+              }}, 1000);
+}
  
   const options = {
     enableTime: true,
@@ -42,9 +41,8 @@ function handlerStart() {
     minuteIncrement: 1,
     onClose(selectedDates) {
       if (selectedDates[0] <= Date.now()) {
-       Block.standard('[data-start]', 'Please choose a date in the future');
-        //alert("Please choose a date in the future");
-        //elements.btnStart.setAttribute('disabled', true);
+        Notiflix.Notify.warning('Please choose a date in the future');
+        
       } else {
         chosenDate = selectedDates[0];
         elements.btnStart.removeAttribute('disabled');

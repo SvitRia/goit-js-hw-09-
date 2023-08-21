@@ -25,7 +25,7 @@ function onListPromise(evt) {
       Notiflix.Notify.failure ( `❌ Rejected promise ${position} in ${delay}ms`)
      })
      } while (i < parseInt(amount.value))
-
+  
   //   function createNextPromise() { 
   //     i += 1;
   //    const delays = parseInt(delay.value) + parseInt(step.value) * (i - 1);
@@ -43,6 +43,8 @@ function onListPromise(evt) {
    
   // }
   // createNextPromise();
+  form.reset()
+ 
 }
 
 function createPromise(position, delay) {

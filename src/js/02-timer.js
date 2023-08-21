@@ -14,18 +14,24 @@ const elements ={
 
 let timerId;
 let chosenDate = null;
+elements.btnStart.setAttribute('disabled', true);
 elements.btnStart.addEventListener('click', handlerStart)
+//elements.startTimer.addEventListener('click', handlerStart)
 function handlerStart() {
     clearInterval(timerId);
+    elements.btnStart.setAttribute('disabled', true);
        timerId = setInterval(() => {
-          elements.btnStart.setAttribute('disabled', true);
+         
           elements.startTimer.setAttribute('disabled', true);
           const currentTime = Date.now();
           const deltaTime = chosenDate - currentTime;
+          console.log(chosenDate);
             if (deltaTime <= 0) {
-                elements.btnStart.removeAttribute('disabled');
+                //elements.btnStart.removeAttribute('disabled');
                 elements.startTimer.removeAttribute('disabled');
+                
             } else { 
+              elements.btnStart.removeAttribute('disabled');
               const { days, hours, minutes, seconds } = convertMs(deltaTime);
               elements.day.textContent = addLeadingZero(days);
               elements.hours.textContent = addLeadingZero(hours);
